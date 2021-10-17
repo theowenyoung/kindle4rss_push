@@ -2,7 +2,8 @@
 ## Make your kindle4rss.com have an automated recurring push button press to send your articles to Kindle
 
 #### What is this?
-It clicks on button to deliver new content on your kindle. Iff you only need 25 articles an dont need any other pro features this will deliver your content by pressing the button
+It clicks on button to deliver new content on your kindle. Iff you only need 25 articles an dont need any other pro features this will deliver your content by pressing the button. If you do like the service and need pro fetures like >25 articles  please signup for paid pro account at kindle4rss.com  
+
 
 #### Instructions
 * export variables for username and password using KINDLE4RSS_USER and KINDLE4RSS_PASSWORD for script to work
