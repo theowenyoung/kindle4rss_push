@@ -45,6 +45,6 @@ else:
         # see if we have any unread articles to send
         if int(len(t))>0:
         # click send the send now button 
-        BeautifulSoup(o.open(BASE_URL + '/send_now/').read().decode('utf8', 'replace'))
+            BeautifulSoup(o.open(BASE_URL + '/send_now/').read().decode('utf8', 'replace'))
 
 
