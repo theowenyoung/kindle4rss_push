@@ -16,8 +16,8 @@ import urllib.request, urllib.parse, urllib.error, urllib.request, urllib.error,
 from bs4 import BeautifulSoup
 
 BASE_URL = 'http://kindle4rss.com/'
-USERNAME = os.environ.get('KINDLE4RSS_USER')
-PASSWORD = os.environ.get('KINDLE4RSS_PASSWORD')
+USERNAME = os.environ.get('USERNAME')
+PASSWORD = os.environ.get('PASSWORD')
 
 
 # build opener
