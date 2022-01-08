@@ -28,14 +28,16 @@ p = urllib.parse.urlencode({
     'email_address': USERNAME,
     'password': PASSWORD
 }).encode("utf-8")
-doc = BeautifulSoup(
-    o.open(BASE_URL + '/login/', p).read().decode('utf8', 'replace'))
+doc = BeautifulSoup(o.open(BASE_URL + '/login/',
+                           p).read().decode('utf8', 'replace'),
+                    features="html.parser")
 
 # get list of articles
-doc = BeautifulSoup(o.open(BASE_URL, p).read().decode('utf8', 'replace'))
+doc = BeautifulSoup(o.open(BASE_URL, p).read().decode('utf8', 'replace'),
+                    features="html.parser")
 
 #print doc as DEBUG
-print(doc)
+#print(doc)
 
 # if not get the HTML doc then exit
 if not doc:
@@ -45,9 +47,10 @@ else:
     table = doc.find("table", {"class": "feed-items"})
     if table:
         t = table.findAll("tr")
+        print(len(t))
         # see if we have any unread articles to send
         if int(len(t)) > 0:
             # click send the send now button
-            BeautifulSoup(
-                o.open(BASE_URL + '/send_now/').read().decode(
-                    'utf8', 'replace'))
+            BeautifulSoup(o.open(BASE_URL + '/send_now/').read().decode(
+                'utf8', 'replace'),
+                          features="html.parser")
