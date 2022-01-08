@@ -46,10 +46,12 @@ else:
     # get only the unread items in our article list
     table = doc.find("table", {"class": "feed-items"})
     if table:
+        print("found table")
         t = table.findAll("tr")
-        print(len(t))
+        print(t)
         # see if we have any unread articles to send
         if int(len(t)) > 0:
+            print("found items")
             # click send the send now button
             BeautifulSoup(o.open(BASE_URL + '/send_now/').read().decode(
                 'utf8', 'replace'),
