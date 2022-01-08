@@ -16,8 +16,8 @@ import urllib.request, urllib.parse, urllib.error, urllib.request, urllib.error,
 from bs4 import BeautifulSoup
 
 BASE_URL = 'http://kindle4rss.com/'
-USERNAME = os.environ.get('USERNAME')
-PASSWORD = os.environ.get('PASSWORD')
+USERNAME = os.environ('USERNAME')
+PASSWORD = os.environ('PASSWORD')
 
 
 # build opener
@@ -43,8 +43,8 @@ else:
     if table:
         t = table.findAll("tr")
         # see if we have any unread articles to send
-        #if int(len(t))>0:
-        #    # click send the send now button 
-        #    BeautifulSoup(o.open(BASE_URL + '/send_now/').read().decode('utf8', 'replace'))
+        if int(len(t))>0:
+        # click send the send now button 
+        BeautifulSoup(o.open(BASE_URL + '/send_now/').read().decode('utf8', 'replace'))
 
 
