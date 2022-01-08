@@ -16,7 +16,7 @@ jobs:
       - run: pip install -r requirements.txt
       - name: execute py script # run the run.py to get the latest data
         run: |
-          python kindle4ss_push.py
+          python kindle4rss_push.py
         env:
           USERNAME: ${{ secrets.username }} # if run.py requires passwords..etc, set it as secrets
           PASSWORD: ${{ secrets.password }}
