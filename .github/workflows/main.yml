@@ -1,0 +1,19 @@
+name: ManualPush
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner.
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8 #install the python needed
+      - name: execute py script # run the run.py to get the latest data
+        run: |
+          python kindle4ss_push.py
+        env:
+          USERNAME: ${{ secrets.USERNAME }} # if run.py requires passwords..etc, set it as secrets
+          PASSWORD: ${{ secrets.PASSWORD }}
