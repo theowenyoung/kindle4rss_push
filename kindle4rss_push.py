@@ -12,29 +12,37 @@
 import os
 import sys
 import urllib.request, urllib.parse, urllib.error, urllib.request, urllib.error, urllib.parse
+import mechanize
+import http.cookiejar
+
+#cookielib = http.cookiejarttp.cookiejar
 
 from bs4 import BeautifulSoup
 
 BASE_URL = 'http://kindle4rss.com/'
-USERNAME = os.environ.get('USERNAME')
-PASSWORD = os.environ.get('PASSWORD')
+USERNAME = os.environ.get("USERNAME")
+PASSWORD = os.environ.get("PASSWORD")
 
-# build opener
+#Debug
+#print(USERNAME)
+#print(PASSWORD)
+
+# build opener using cookie jar and mechanize
 o = urllib.request.build_opener(urllib.request.HTTPCookieProcessor())
 urllib.request.install_opener(o)
 
-# login
-p = urllib.parse.urlencode({
-    'email_address': USERNAME,
-    'password': PASSWORD
-}).encode("utf-8")
-doc = BeautifulSoup(o.open(BASE_URL + '/login/',
-                           p).read().decode('utf8', 'replace'),
-                    features="html.parser")
+cj = http.cookiejar.CookieJar()
+br = mechanize.Browser()
+br.set_cookiejar(cj)
+br.open(BASE_URL + '/login/')
 
-# get list of articles
-doc = BeautifulSoup(o.open(BASE_URL, p).read().decode('utf8', 'replace'),
-                    features="html.parser")
+br.select_form(nr=0)
+br.form['email_address'] = USERNAME
+br.form['password'] = PASSWORD
+br.submit()
+
+#pass the mechanize content back to BeautiFulSoup
+doc = BeautifulSoup(br.response().read(), features="html5lib")
 
 #print doc as DEBUG
 #print(doc)
@@ -45,14 +53,16 @@ if not doc:
 else:
     # get only the unread items in our article list
     table = doc.find("table", {"class": "feed-items"})
+    #debugprint
+    #print(table)
     if table:
-        print("found table")
         t = table.findAll("tr")
-        print(t)
-        # see if we have any unread articles to send
-        if int(len(t)) > 0:
-            print("found items")
-            # click send the send now button
-            BeautifulSoup(o.open(BASE_URL + '/send_now/').read().decode(
-                'utf8', 'replace'),
-                          features="html.parser")
+        print("Number of Articles collected")
+        print(len(t))
+    # see if we have any unread articles to send
+    if int(len(t)) > 0:
+        print("sending the articles to kindle")
+        # click send the send now button
+        BeautifulSoup(o.open(BASE_URL + '/send_now/').read().decode(
+            'utf8', 'replace'),
+                      features="html5lib")
