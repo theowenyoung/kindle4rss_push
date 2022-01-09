@@ -13,4 +13,8 @@ It clicks on button to deliver new content on your kindle. Iff you only need 25 
   0 5 * * * python ~/git/kindle4rss/kindle4rss_push.py
   ```
 
+## GitHub actions setup
+* please see my main.yaml for a GitHub Actions nightly Cronjob
+* dont forget to add your GihHub Repo Secrets to your repo settings -> secrets section first
+
 **original Python2 ported code:** www.github.com/dcrystalj/kindle4rss
