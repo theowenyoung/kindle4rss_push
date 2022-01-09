@@ -55,6 +55,8 @@ else:
     table = doc.find("table", {"class": "feed-items"})
     #debugprint
     #print(table)
+    #create items list holder
+    t = []
     if table:
         t = table.findAll("tr")
         print("Number of Articles collected")
@@ -66,3 +68,5 @@ else:
         br.open(BASE_URL + '/send_now/')
         br.select_form(nr=0)
         br.submit()
+    else:
+        print("no articles to pull")
