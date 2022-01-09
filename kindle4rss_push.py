@@ -63,6 +63,6 @@ else:
     if int(len(t)) > 0:
         print("sending the articles to kindle")
         # click send the send now button
-        BeautifulSoup(o.open(BASE_URL + '/send_now/').read().decode(
-            'utf8', 'replace'),
-                      features="html5lib")
+        br.open(BASE_URL + '/send_now/')
+        br.select_form(nr=0)
+        br.submit()
