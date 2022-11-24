@@ -1,7 +1,7 @@
 name: kindle4rssbutton
 on:
   schedule:
-    - cron: "0 */6 * * * " #runs at 00:00 UTC everyday
+    - cron: "8 16 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest
