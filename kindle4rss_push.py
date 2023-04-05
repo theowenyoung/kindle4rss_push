@@ -33,7 +33,9 @@ urllib.request.install_opener(o)
 
 cj = http.cookiejar.CookieJar()
 br = mechanize.Browser()
+br.set_handle_equiv(False)
 br.set_handle_robots(False)
+br.addheaders = [('User-agent','Mozilla/5.0 (X11; Linux x86_64; rv:18.0)Gecko/20100101 Firefox/18.0 (compatible;)'),('Accept', '*/*')]
 br.set_cookiejar(cj)
 br.open(BASE_URL + '/login/')
 
