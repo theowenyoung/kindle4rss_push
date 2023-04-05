@@ -33,6 +33,7 @@ urllib.request.install_opener(o)
 
 cj = http.cookiejar.CookieJar()
 br = mechanize.Browser()
+br.set_handle_robots(False)
 br.set_cookiejar(cj)
 br.open(BASE_URL + '/login/')
 
